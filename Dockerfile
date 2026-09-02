@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=ghcr.io/villgzs/basic-alpine
-ARG BASE_VERSION=armv7
+ARG BASE_VERSION=latest
 ARG BUILD_FROM=${BASE_IMAGE}:${BASE_VERSION}
 
 ####################
