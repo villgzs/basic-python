@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=dockergzs/hass-base
+ARG BASE_IMAGE=ghcr.io/villgzs/basic-alpine
 ARG BASE_VERSION=armv7
 ARG BUILD_FROM=${BASE_IMAGE}:${BASE_VERSION}
 
