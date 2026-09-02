@@ -1,8 +1,6 @@
-## STEP No.2
-
 Prereq.: STEP No.1 (Basic-Alpine)
 
-# Step No.2 
+### Step No.2 
 
 # Alpine Home Assistant Base Image with Python extension - for arm 32bit platforms
 
