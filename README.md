@@ -1,4 +1,4 @@
-[Official release is here: https://github.com/home-assistant/docker/releases/tag/2026.07.0](https://github.com/home-assistant/docker-base/releases/tag/2026.06.1)
+[Official release is here: https://github.com/home-assistant/docker-base/releases/tag/2026.06.1](https://github.com/home-assistant/docker-base/pkgs/container/base-python/948808254?tag=3.14-alpine3.24-2026.06.1))
 
 # THIS IS NOT OFFICIAL RELEASE !
 
