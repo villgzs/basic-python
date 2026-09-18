@@ -18,6 +18,8 @@ USE AT YOUR OWN RISK.
 
 Prereq.: STEP No.1 (Basic-Alpine)
 
+#### [Home-assistant/docker-base - actions for releases](https://github.com/home-assistant/docker-base/actions?query=event%3Arelease)
+
 ### Step No.2 
 
 # Alpine Home Assistant Base Image with Python extension - for arm 32bit platforms
