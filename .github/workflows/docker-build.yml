@@ -7,6 +7,10 @@ on:
         description: "Push image to registry"
         type: boolean
         default: true
+      version:
+        description: "Push image to registry"
+        type: string
+        default: "2026.06.1"      
 
 env:
   REGISTRY: ghcr.io
@@ -65,16 +69,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile_${{inputs.version}}
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.push) }}
-          cache-from: type=gha,scope=${{ steps.prepare.outputs.platform_tag }}
-          cache-to: type=gha,mode=max,scope=${{ steps.prepare.outputs.platform_tag }}
           provenance: true
           sbom: true
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
+
 
       - name: Export digest
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.push)
