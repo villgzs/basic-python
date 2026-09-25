@@ -7,7 +7,7 @@ on:
         description: "Push image to registry"
         type: boolean
         default: true
-      version:
+      basic-alpine-version:
         description: "Push image to registry"
         type: string
         default: "2026.06.1"      
@@ -69,13 +69,15 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile_${{inputs.version}}
+          file: ./Dockerfile_${{inputs.basic-alpine-version}}
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.push) }}
           provenance: true
           sbom: true
-
+          build-args: |
+            BASE_IMAGE=ghcr.io/villgzs/basic-alpine
+            BASE_VERSION=${{inputs.basic-alpine-version}}
 
       - name: Export digest
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.push)
@@ -132,7 +134,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha,prefix=sha-
-            type=raw,value=${{inputs.version}},enable=${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' }}
+            type=raw,value=${{inputs.basic-alpine-version}},enable=${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' }}
 
       - name: Create manifest list and push
         working-directory: /tmp/digests
